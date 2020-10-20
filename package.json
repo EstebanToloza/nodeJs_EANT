@@ -1,0 +1,19 @@
+{
+  "name": "nodejs_eant",
+  "version": "1.0.0",
+  "description": "Repo de curso de desarrollo backend con Node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EstebanToloza/nodeJs_EANT.git"
+  },
+  "author": "EstebanToloza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EstebanToloza/nodeJs_EANT/issues"
+  },
+  "homepage": "https://github.com/EstebanToloza/nodeJs_EANT#readme"
+}
