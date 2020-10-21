@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/EstebanToloza/nodeJs_EANT/issues"
   },
-  "homepage": "https://github.com/EstebanToloza/nodeJs_EANT#readme"
+  "homepage": "https://github.com/EstebanToloza/nodeJs_EANT#readme",
+  "dependencies": {
+    "nodemon": "^2.0.6"
+  }
 }
