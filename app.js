@@ -1,10 +1,13 @@
+//require('dotenv').config()
+
 const express = require("express")
 const nodemailer = require("nodemailer")
 const joi = require('joi');
+const expressFileUpload = require('express-fileupload')
 
 const app = express()
 
-const port = 1000   //mas allá del 1000 usualmente están disponibles
+const port = 3000   //mas allá del 1000 usualmente están disponibles
 
 const miniOutlook = nodemailer.createTransport({
     host: process.env.HOST_EMAIL,
@@ -17,14 +20,16 @@ const miniOutlook = nodemailer.createTransport({
 
 const schema = joi.object({
     nombre : joi.string().required,
-    email : joi.string().email({ minDomainSegments: 3, tlds: { allow: ['com', 'net', 'tech'] } }).required,
+    email : joi.string().email({ minDomainSegments: 3, tlds: { allow: ['com', 'net', 'tech'] } }).required(),
     asunto : joi.number().integer().required,
     mensaje : joi.string().required,
 })
 
 app.listen(port)
 app.use( express.static('public') )
-app.use( express.urlencoded({ extended : true }) )
+app.use( express.json() ) //<-- de application/json a Object
+app.use( express.urlencoded({ extended : true }) ) //<--- de "application/x-www-form-urlencoded" a Object
+app.use ( expressFileUpload() ) //<-- de "multipart/form-data" a Object
 
 /*
 // Plantilla modelo para "endpoints" de express() //
@@ -34,10 +39,21 @@ app.TIPO_HTTP("/RUTA", (req, res) => {
 app.post("/enviar", (req, res) => {
     const contacto = req.body
 
-    const validate = schema.validate( contacto )
+    console.log(req.files)
 
-    if( validate.error ){
-        res.end(error)
+    return res.end('Mira la consola')
+
+    const { error, value } = schema.validate({ contacto });
+
+    if( error ){
+        console.log(error)
+
+        const msg = {
+            error : error.details.map( e => {
+                console.log(e.message)
+            })
+        }
+        res.end(error.details[0].message)
     } else{
         miniOutlook.sendMail({
             from : contacto.correo, // sender address

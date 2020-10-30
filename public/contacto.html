@@ -7,20 +7,20 @@
 	</head>
 	<body class="container">
 		<h1>Formulario HTML</h1>
-		<form action="enviar" method="post">
+		<form action="enviar" method="post" class="mb-4" enctype="multipart/form-data"> <!--enctype="multipart/form-data" es la configuración para enviar archivos además de texto-->
 
 			<label for="nombre">Ingrese su nombre:</label>
-			<input class="form-control" type="text" name="nombre" placeholder="Ej: Obi Juan Kenobi" required>
+			<input class="form-control" type="text" name="nombre" placeholder="Ej: Obi Juan Kenobi">
 			
 			<br>
 
 			<label for="correo">Ingrese su E-Mail:</label>
-			<input class="form-control" type="email" name="correo" placeholder="Ej: obi.juan@jedi.com" required>
+			<input class="form-control" type="email" name="correo" placeholder="Ej: obi.juan@jedi.com">
 
 			<br>
 
 			<label for="asunto">Elija su asunto:</label>
-			<select class="form-control" name="asunto" required>
+			<select class="form-control" name="asunto">
 				<option value="1">Consulta</option>
 				<option value="2">Pedido</option>
 				<option value="3">Sugerencia</option>
@@ -30,8 +30,12 @@
 			<br>
 
 			<label for="mensaje">Ingrese su mensaje:</label>
-			<textarea class="form-control" name="mensaje" cols="30" rows="10" placeholder="Max: 100 caracteres" required></textarea>
+			<textarea class="form-control" name="mensaje" cols="30" rows="10" placeholder="Max: 100 caracteres"></textarea>
 
+			<br>
+
+			<label for="archivo">Elija su archivo</label>
+			<input type="file">
 			<br>
 
 			<input class="btn btn-primary" type="submit" value="Enviar!">
